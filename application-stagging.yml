@@ -1,0 +1,21 @@
+app:
+  name: "Maverick GraphQL Example"
+  website: "blog.piinalpin.com"
+  origin: "http://localhost:3000"
+  upload_dir: "./tmp/"
+  production: false
+spring:
+  datasource:
+    url: "jdbc:mysql://localhost:3306/DB_NAME?allowPublicKeyRetrieval=true&useSSL=false"
+    username: DB_USERNAME
+    password: DB_PASSWORD
+    driverClassName: com.mysql.cj.jdbc.Driver
+flyway:
+  enabled: true
+  baselineOnMigrate: true
+  url: jdbc:mysql://localhost:3306/DB_NAME?allowPublicKeyRetrieval=true&useSSL=false
+  user: DB_USERNAME
+  password: DB_PASSWORD
+  validateOnMigrate: false
+server:
+  port: 8080
