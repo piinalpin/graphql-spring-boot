@@ -1,10 +1,12 @@
 package com.maverick.graphql.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Entity
 @Table(name = "M_PERSON")
@@ -49,5 +51,11 @@ public class PersonModel extends BaseModel {
     @Getter
     @Setter
     private String address;
+
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "author")
+    @Getter
+    @Setter
+    private List<BookModel> authors;
 
 }

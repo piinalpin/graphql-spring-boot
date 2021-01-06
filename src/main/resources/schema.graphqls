@@ -1,16 +1,23 @@
 scalar Date
-scalar Timestamp
 
 type Query {
     getAllPerson: [Person!]
     getPersonById(id: Int!): Person
     getPersonByIdentityNumber(identityNumber: String!): Person
+
+    getAllBook: [Book!]
+    getAllBookByAuthor(author: String!): [Book!]
+    getBookById(id: Int!): Book!
 }
 
 type Mutation {
     createPerson(input: PersonInput!): Person!
     updatePerson(input: PersonInput!, id: Int!): Person!
     deletePerson(id: Int!): OkMessage!
+
+    addBook(input: BookInput!): Book!
+    updateBook(input: BookInput!, id: Int!): Book
+    deleteBook(id: Int!): OkMessage!
 }
 
 input PersonInput {
@@ -33,6 +40,26 @@ type Person {
     createdAt: Date,
     createdBy: Int,
     updatedAt: Date
+}
+
+type Book {
+    id: Int!,
+    author: Person!,
+    title: String!,
+    publisher: String!,
+    description: String,
+    releaseDate: Date!,
+    createdAt: Date,
+    createdBy: Int,
+    updatedAt: Date
+}
+
+input BookInput {
+    authorId: Int!,
+    title: String!,
+    publisher: String!,
+    description: String,
+    releaseDate: Date!
 }
 
 type OkMessage {
