@@ -24,5 +24,11 @@ pipeline {
           mvn clean install -Dmaven.test.skip=true
         """
     }
+
+    stage("Package") {
+        sh """
+          mvn clean package -Dmaven.test.skip=true
+        """
+    }
   }
 }
