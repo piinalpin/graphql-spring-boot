@@ -11,7 +11,6 @@ pipeline {
             git url: "${gitRepo}", branch: "${gitBranch}", credentialsId: "${jenkinsCredentialsID}"
         }
     }
-    
     stage("Run Test") {
         steps {
             sh """
