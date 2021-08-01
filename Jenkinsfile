@@ -6,29 +6,35 @@ pipeline {
   agent {label "linux"}
   stages {
     stage("Checkout") {
-      steps {
-        git url: "${gitRepo}", branch: "${gitBranch}", credentialsId: "${jenkinsCredentialsID}"
-      }
+        steps {
+            git url: "${gitRepo}", branch: "${gitBranch}", credentialsId: "${jenkinsCredentialsID}"
+        }
     }
     
     stage("Run Test") {
-        sh """
-          mvn --version
-          gradle --version
-          docker info
-        """
+        steps {
+            sh """
+                mvn --version
+                gradle --version
+                docker info
+            """
+        }
     }
 
     stage("Build") {
-        sh """
-          mvn clean install -Dmaven.test.skip=true
-        """
+        steps {
+            sh """
+                mvn clean install -Dmaven.test.skip=true
+            """
+        }
     }
 
     stage("Package") {
-        sh """
-          mvn clean package -Dmaven.test.skip=true
-        """
+        steps {
+            sh """
+                mvn clean package -Dmaven.test.skip=true
+            """
+        }
     }
   }
 }
