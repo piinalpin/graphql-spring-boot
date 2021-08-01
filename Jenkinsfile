@@ -11,7 +11,6 @@ pipeline {
             git url: "${gitRepo}", branch: "${gitBranch}", credentialsId: "${jenkinsCredentialsID}"
         }
     }
-    
     stage("Run Test") {
         steps {
             sh """
@@ -21,7 +20,6 @@ pipeline {
             """
         }
     }
-
     stage("Build") {
         steps {
             sh """
@@ -29,7 +27,6 @@ pipeline {
             """
         }
     }
-
     stage("Package") {
         steps {
             sh """
