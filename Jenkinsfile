@@ -4,6 +4,7 @@ def jenkinsCredentialsID = 'test-jenkins-github'
 
 pipeline {
   agent {label "linux"}
+  options { skipDefaultCheckout() }
   stages {
     stage("Checkout") {
         steps {
